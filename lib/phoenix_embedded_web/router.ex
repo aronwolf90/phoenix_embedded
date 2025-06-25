@@ -14,6 +14,17 @@ defmodule PhoenixEmbeddedWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :widget do
+    plug CORSPlug, origin: ["http://localhost:8080"]
+    plug :put_root_layout, html: {PhoenixEmbeddedWeb.Layouts, :widget}
+  end
+
+  scope "/widget", PhoenixEmbeddedWeb do
+    pipe_through [:browser, :widget]
+
+    live "/questionnaire", QuestionnaireLive
+  end
+
   scope "/", PhoenixEmbeddedWeb do
     pipe_through :browser
 

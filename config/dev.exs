@@ -23,6 +23,7 @@ config :phoenix_embedded, PhoenixEmbeddedWeb.Endpoint,
   secret_key_base: "qgpFwnIXNWj9knG1JdJsHbKnSgdBCQHMIL68e8j4TNZ7HtVTKyNgdli3udrk+IFe",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:phoenix_embedded, ~w(--sourcemap=inline --watch)]},
+    esbuild_widget: {Esbuild, :install_and_run, [:widget, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:phoenix_embedded, ~w(--watch)]}
   ]
 
