@@ -15,7 +15,7 @@ defmodule PhoenixEmbeddedWeb.Router do
   end
 
   pipeline :widget do
-    plug CORSPlug, origin: ["http://localhost:8080"]
+    plug CORSPlug, origin: ["http://localhost:8080", "https://getbootstrap.com"]
     plug :put_root_layout, html: {PhoenixEmbeddedWeb.Layouts, :widget}
   end
 
