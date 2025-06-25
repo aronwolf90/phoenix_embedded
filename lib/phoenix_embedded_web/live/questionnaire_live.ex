@@ -1,5 +1,5 @@
 defmodule PhoenixEmbeddedWeb.QuestionnaireLive do
-  use PhoenixEmbeddedWeb, :live_view_widget
+  use PhoenixEmbeddedWeb, :live_view
 
   alias PhoenixEmbedded.Questionnaire
 
