@@ -19,3 +19,7 @@ To test the embedded page:
   script.setAttribute("data-path", "/widget/questionnaire")
   new_main.appendChild(script)
   ```
+
+## Presentation
+
+https://github.com/aronwolf90/phoenix-embedded-presentation/blob/master/main.pdf
