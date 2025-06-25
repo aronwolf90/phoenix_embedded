@@ -17,6 +17,14 @@ defmodule PhoenixEmbeddedWeb.Router do
   pipeline :widget do
     plug CORSPlug, origin: ["http://localhost:8080", "https://getbootstrap.com"]
     plug :put_root_layout, html: {PhoenixEmbeddedWeb.Layouts, :widget}
+
+    # Only needed if the parent domain is different for WP and phoenix.
+    # I recommend to set it same_site to Lax on production.
+    plug Plug.Session,
+      store: :cookie,
+      key: "_phoenix_embedded_key",
+      signing_salt: "7kAtqfMo",
+      same_site: "None; Secure"
   end
 
   scope "/widget", PhoenixEmbeddedWeb do
