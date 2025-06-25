@@ -3,13 +3,25 @@ import {LiveSocket} from "phoenix_live_view"
 
 const currentScript = document.currentScript
 const widgetHost = new URL(currentScript.src).origin;
-const widgetName = document.currentScript.getAttribute("data-path");
+const widgetPath = document.currentScript.getAttribute("data-path");
+const url = `${widgetHost}/${widgetPath}`
 
-fetch(`${widgetHost}/${widgetName}`)
+fetch(url, { credentials: "include" })
   .then(response => response.text())
   .then(data => {
     const container = document.createElement("div")
+
     container.innerHTML = data;
     currentScript.before(container)
+  
+    const csrfToken = document.querySelector("meta[name='widget-csrf-token']").getAttribute("content")
+    const liveSocket = new LiveSocket(`${widgetHost}/live`, Socket, {
+      longPollFallbackMs: 2500,
+      params: {_csrf_token: csrfToken}
+    })
+
+    liveSocket.href = url
+    liveSocket.connect()
+    window.liveSocket = liveSocket
   })
 

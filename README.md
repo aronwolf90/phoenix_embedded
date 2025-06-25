@@ -5,14 +5,17 @@ To start your Phoenix server:
   * Run `mix setup` to install and setup dependencies
   * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+To test the embedded page:
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+  * Visit https://getbootstrap.com/
+  * Paste into the console the following code:
+  ```
+  main = document.querySelectorAll('main')[0]
+  new_main = document.createElement("main")
+  main.replaceWith(new_main)
 
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+  script = document.createElement("script")
+  script.src = "http://localhost:4000/assets/widget.js"
+  script.setAttribute("data-path", "/widget/questionnaire")
+  new_main.appendChild(script)
+  ```

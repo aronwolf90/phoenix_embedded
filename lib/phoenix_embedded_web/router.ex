@@ -15,14 +15,16 @@ defmodule PhoenixEmbeddedWeb.Router do
   end
 
   pipeline :widget do
-    plug CORSPlug, origin: ["http://localhost:8080"]
+    plug CORSPlug, origin: ["http://localhost:8080", "https://getbootstrap.com"]
     plug :put_root_layout, html: {PhoenixEmbeddedWeb.Layouts, :widget}
   end
 
   scope "/widget", PhoenixEmbeddedWeb do
     pipe_through [:browser, :widget]
 
-    live "/questionnaire", QuestionnaireLive
+    live_session :widget do
+      live "/questionnaire", QuestionnaireLive
+    end
   end
 
   scope "/", PhoenixEmbeddedWeb do
