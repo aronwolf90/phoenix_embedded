@@ -1,14 +1,15 @@
 defmodule PhoenixEmbeddedWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :phoenix_embedded
 
-  # The session will be stored in the cookie and signed,
-  # this means its contents can be read but not tampered with.
-  # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
     key: "_phoenix_embedded_key",
     signing_salt: "7kAtqfMo",
-    same_site: "Lax"
+    # Only needed if the parent domain is different for WP and phoenix.
+    # I recommend to set it same_site to Lax on production.
+    #
+    # TODO: Add condition for Safary and move it into the widget pipe.
+    same_site: "None; Secure"
   ]
 
   socket "/live", Phoenix.LiveView.Socket,
