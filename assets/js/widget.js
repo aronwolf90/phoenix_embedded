@@ -1,3 +1,12 @@
+/*
+Add the following to the page where you want to load the widget.
+
+<script
+  src="http://localhost:4000/assets/widget.js"
+  data-path="/widget/questionnaire"
+></script>
+*/
+
 import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 
